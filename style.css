@@ -1,0 +1,2933 @@
+/* Reset and Base Styles */
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.house, .house *, .house *::before, .house *::after {
+    transform-style: preserve-3d;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    overflow: hidden;
+}
+
+body {
+    background: #C6C5E1;
+    transition: background 2s ease;
+}
+
+/* Time-based backgrounds */
+body.day {
+    background: linear-gradient(180deg, #87CEEB 0%, #C6C5E1 100%);
+}
+
+body.night {
+    background: linear-gradient(180deg, #1a1a2e 0%, #2d2d44 100%);
+}
+
+body.sunny {
+    background: linear-gradient(180deg, #87CEEB 0%, #B0D4F1 50%, #E8F4F8 100%);
+}
+
+body.rainy {
+    background: linear-gradient(180deg, #6b7c93 0%, #8b9aad 100%);
+}
+
+body.stormy {
+    background: linear-gradient(180deg, #4a4a5a 0%, #5a5a6a 100%);
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.weather-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Weather Canvas */
+#weatherCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Sunburst Background */
+#back {
+    position: fixed;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#sunburst {
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+body.sunny #sunburst {
+    opacity: 0.3;
+}
+
+/* 3D House Container */
+.house {
+    position: absolute;
+    width: 36vw;
+    height: 24vw;
+    transform: perspective(20000px) rotateX(75deg) rotateZ(35deg) translateZ(-9vw);
+    transition: transform 0.1s linear;
+    z-index: 2;
+}
+
+.face {
+    position: absolute;
+}
+
+.shadows {
+    width: 100%;
+    height: 100%;
+}
+
+.shadow-a {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 130%;
+    height: 103%;
+    transform-origin: top right;
+    transform: skewY(-3deg);
+    background-color: #686688;
+    box-shadow: -1vw 1vw 1.5vw #686688;
+    filter: blur(0.5vw);
+}
+
+.shadow-b {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 101.5%;
+    background-color: #5a5a78;
+}
+
+/* Building A */
+.al {
+    width: 3vw;
+    height: 24vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.al__front {
+    width: 30vw;
+    height: 0.4vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-23.2vw);
+    background-image: linear-gradient(to right, #9c98b6, #c4c2d6);
+}
+
+.al__back {
+    width: 30vw;
+    height: 0.4vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-30vw) translateY(-0.4vw);
+    background-color: #c4c2d6;
+}
+
+.al__right {
+    width: 24vw;
+    height: 0.4vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(30vw) translateX(-24vw) translateY(-0.4vw);
+    background-color: #fbfbfb;
+}
+
+.al__left {
+    width: 24vw;
+    height: 0.4vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.4vw);
+    background-color: #8a8698;
+}
+
+.al__top {
+    width: 30vw;
+    height: 24vw;
+    transform-origin: top left;
+    transform: translateZ(0.4vw);
+    background-image: linear-gradient(to right, #b4b2c6 40%, #e8e8ea, #f2f2f2);
+}
+
+.al__top::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 13vw;
+    height: 7vw;
+    background-image: linear-gradient(-135deg, transparent 20%, rgba(186, 223, 217, 0.75));
+}
+
+.al__top::after {
+    content: '';
+    position: absolute;
+    bottom: 1vw;
+    left: 6vw;
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    background-image: radial-gradient(rgba(251, 251, 251, 0.25), transparent);
+    filter: blur(0.7vw);
+}
+
+.al__bottom {
+    width: 30vw;
+    height: 24vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-30vw);
+    background-color: #c4c2d6;
+}
+
+/* Building A - Bottom */
+.ab {
+    width: 8vw;
+    height: 8vw;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.ab__front {
+    width: 8vw;
+    height: 0.4vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-7.6vw);
+    background-color: #c4c2d6;
+}
+
+.ab__back {
+    width: 8vw;
+    height: 0.4vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-8vw) translateY(-0.4vw);
+    background-color: #c4c2d6;
+}
+
+.ab__right {
+    width: 8vw;
+    height: 0.4vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(8vw) translateX(-8vw) translateY(-0.4vw);
+    background-color: #fbfbfb;
+}
+
+.ab__left {
+    width: 8vw;
+    height: 0.4vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.4vw);
+    background-color: #fbfbfb;
+}
+
+.ab__top {
+    width: 8vw;
+    height: 8vw;
+    transform-origin: top left;
+    transform: translateZ(0.4vw);
+    background-color: #f2f2f2;
+}
+
+.ab__bottom {
+    width: 8vw;
+    height: 8vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-8vw);
+    background-color: #c4c2d6;
+}
+
+/* Building A - Top */
+.at {
+    width: 8vw;
+    height: 4vw;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.at__front {
+    width: 8vw;
+    height: 0.4vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-3.6vw);
+    background-color: #c4c2d6;
+}
+
+.at__back {
+    width: 8vw;
+    height: 0.4vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-8vw) translateY(-0.4vw);
+    background-color: #c4c2d6;
+}
+
+.at__right {
+    width: 4vw;
+    height: 0.4vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(8vw) translateX(-4vw) translateY(-0.4vw);
+    background-color: #fbfbfb;
+}
+
+.at__left {
+    width: 4vw;
+    height: 0.4vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.4vw);
+    background-color: #fbfbfb;
+}
+
+.at__top {
+    width: 8vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: translateZ(0.4vw);
+    background-color: #f2f2f2;
+}
+
+.at__bottom {
+    width: 8vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-8vw);
+    background-color: #c4c2d6;
+}
+
+/* Building A - Pool */
+.ac {
+    width: 6vw;
+    height: 12vw;
+    position: absolute;
+    right: 0;
+    top: 4vw;
+}
+
+.ac .face {
+    opacity: 0.9;
+}
+
+.ac__front {
+    width: 6vw;
+    height: 1vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-11vw);
+    background-color: #4d6d98;
+    opacity: 0.75;
+}
+
+.ac__back {
+    width: 6vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-6vw) translateY(-1vw);
+    background-color: #4d6d98;
+}
+
+.ac__right {
+    width: 12vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(6vw) translateX(-12vw) translateY(-1vw);
+    background-image: linear-gradient(to top, #6187be, #7095c9);
+}
+
+.ac__left {
+    width: 12vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-1vw);
+    background-color: #1a3652;
+}
+
+.ac__top {
+    width: 6vw;
+    height: 12vw;
+    transform-origin: top left;
+    transform: translateZ(1vw);
+    opacity: 0.75;
+    background-image: linear-gradient(to right, #7095c9 0, #7095c9 5%, #6187be 20%, #6187be 30%, #7095c9 40%, #7095c9 65%, #6a8fc3 70%, #6a8fc3 72%, #7095c9 85%);
+    box-shadow: inset 0.5vw 0.5vw 2vw rgba(251, 251, 251, 0.5);
+}
+
+.ac__top::before {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    overflow: hidden;
+    background-image: linear-gradient(to bottom, transparent 0, transparent 10%, rgba(97, 135, 190, 0.9) 15%, rgba(97, 135, 190, 0.9) 40%, rgba(251, 251, 251, 0.2) 40%, rgba(251, 251, 251, 0.2) 50%, transparent 60%);
+    filter: blur(0.15vw);
+}
+
+.ac__bottom {
+    width: 6vw;
+    height: 12vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-6vw);
+    background-color: #4d6d98;
+}
+
+.ac__bottom::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: -0.25vw 0.25vw 1vw #234062;
+}
+
+/* Building B - Exterior */
+.bce {
+    width: 17vw;
+    height: 20.5vw;
+    position: absolute;
+    right: 6vw;
+    top: 0;
+    transform: translateZ(0.41vw);
+}
+
+.bce__front {
+    width: 17vw;
+    height: 0.5vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-20vw);
+    background-image: linear-gradient(to right, #b4b2c6, #c4c2d6);
+}
+
+.bce__back {
+    width: 17vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-17vw) translateY(-0.5vw);
+    background-color: #c4c2d6;
+}
+
+.bce__right {
+    width: 22vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(17vw) translateX(-22vw) translateY(-0.5vw);
+    background-color: #f2f2f2;
+}
+
+.bce__left {
+    width: 22vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.5vw);
+    background-color: #c4c2d6;
+}
+
+.bce__top {
+    width: 17vw;
+    height: 22vw;
+    transform-origin: top left;
+    transform: translateZ(0.5vw);
+    background-image: linear-gradient(135deg, #b4b2c6 60%, #f2f2f2);
+}
+
+.bce__bottom {
+    width: 17vw;
+    height: 22vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-17vw);
+    background-color: #c4c2d6;
+}
+
+.bce__bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 101%;
+    background-color: #675D6E;
+    filter: blur(0.35vw);
+}
+
+/* Building B - Interior */
+.bci {
+    width: 16vw;
+    height: 21vw;
+    position: absolute;
+    right: 6vw;
+    top: 0;
+    transform: translateZ(0.92vw);
+}
+
+.bci__front {
+    width: 16vw;
+    height: 0.5vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-20.5vw);
+    background-image: linear-gradient(to right, #b4b2c6, #c4c2d6);
+}
+
+.bci__back {
+    width: 16vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-16vw) translateY(-0.5vw);
+    background-color: #c4c2d6;
+}
+
+.bci__right {
+    width: 21vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(16vw) translateX(-21vw) translateY(-0.5vw);
+    background-color: #f2f2f2;
+}
+
+.bci__left {
+    width: 21vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.5vw);
+    background-color: #c4c2d6;
+}
+
+.bci__top {
+    width: 16vw;
+    height: 21vw;
+    transform-origin: top left;
+    transform: translateZ(0.5vw);
+    background-image: linear-gradient(135deg, #b4b2c6 60%, #f2f2f2);
+    background-color: #d1d0e0;
+}
+
+.bci__top::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 16.4vw;
+    background-color: #d1d0e0;
+}
+
+.bci__top::after {
+    content: '';
+    position: absolute;
+    bottom: 1.5vw;
+    left: 1vw;
+    width: 10vw;
+    height: 3.5vw;
+    border-radius: 50%;
+    background-image: radial-gradient(#badfd9, transparent);
+    filter: blur(0.5vw);
+}
+
+.bci__bottom {
+    width: 16vw;
+    height: 21vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-16vw);
+    background-color: #c4c2d6;
+}
+
+.bci__bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 101%;
+    background-color: #675D6E;
+    filter: blur(0.35vw);
+}
+
+/* Building B - Left */
+.bl {
+    width: 13vw;
+    height: 17vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateZ(0.41vw);
+}
+
+.bl__front {
+    width: 13.1vw;
+    height: 0.5vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-16.5vw);
+    background-image: linear-gradient(to right, #8a8698, #b4b2c6);
+}
+
+.bl__back {
+    width: 13.1vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-13.1vw) translateY(-0.5vw);
+    background-color: #c4c2d6;
+}
+
+.bl__right {
+    width: 17vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(13.1vw) translateX(-17vw) translateY(-0.5vw);
+    background-color: #f2f2f2;
+}
+
+.bl__left {
+    width: 17vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.5vw);
+    background-color: #fbfbfb;
+}
+
+.bl__top {
+    width: 13.1vw;
+    height: 17vw;
+    transform-origin: top left;
+    transform: translateZ(0.5vw);
+    background-color: #d1d0e0;
+}
+
+.bl__top::before {
+    content: '';
+    position: absolute;
+    top: 2vw;
+    left: 3.5vw;
+    width: 12vw;
+    height: 12vw;
+    border-radius: 50%;
+    background-color: rgba(222, 245, 241, 0.35);
+    filter: blur(0.95vw);
+}
+
+.bl__bottom {
+    width: 13.1vw;
+    height: 17vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-13.1vw);
+    background-color: #c4c2d6;
+}
+
+.bl__bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 102%;
+    background-color: #9c98b6;
+    box-shadow: 0vw 0.25vw 1vw #9c98b6;
+}
+
+/* Building B - Top */
+.bt {
+    width: 4vw;
+    height: 4vw;
+    position: absolute;
+    right: 2vw;
+    top: 0;
+    transform: translateZ(0.41vw);
+}
+
+.bt__front {
+    width: 4vw;
+    height: 1.1vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-2.9vw);
+    background-image: linear-gradient(to top, #aeacc0 50%, #cccad6);
+}
+
+.bt__back {
+    width: 4vw;
+    height: 1.1vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-4vw) translateY(-1.1vw);
+    background-color: #c4c2d6;
+}
+
+.bt__right {
+    width: 4vw;
+    height: 1.1vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(4vw) translateX(-4vw) translateY(-1.1vw);
+    background-color: #f2f2f2;
+}
+
+.bt__left {
+    width: 4vw;
+    height: 1.1vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-1.1vw);
+    background-color: #fbfbfb;
+}
+
+.bt__top {
+    width: 4vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: translateZ(1.1vw);
+    background-color: #e8e8ea;
+}
+
+.bt__bottom {
+    width: 4vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-4vw);
+    background-color: #c4c2d6;
+}
+
+/* Building B - Bottom Exterior */
+.bbe {
+    width: 6vw;
+    height: 6vw;
+    position: absolute;
+    right: 0;
+    bottom: 2vw;
+    transform: translateZ(0.41vw);
+}
+
+.bbe__front {
+    width: 6vw;
+    height: 0.5vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-5.5vw);
+    background-color: #c4c2d6;
+}
+
+.bbe__back {
+    width: 6vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-6vw) translateY(-0.5vw);
+    background-color: #c4c2d6;
+}
+
+.bbe__right {
+    width: 6vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(6vw) translateX(-6vw) translateY(-0.5vw);
+    background-color: #f2f2f2;
+}
+
+.bbe__left {
+    width: 6vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.5vw);
+    background-color: #fbfbfb;
+}
+
+.bbe__top {
+    width: 6vw;
+    height: 6vw;
+    transform-origin: top left;
+    transform: translateZ(0.5vw);
+    background-color: #f8f8f8;
+}
+
+.bbe__bottom {
+    width: 6vw;
+    height: 6vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-6vw);
+    background-color: #fbfbfb;
+}
+
+.bbe__bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 95%;
+    height: 104%;
+    background-color: #675D6E;
+    filter: blur(0.35vw);
+}
+
+/* Building B - Bottom Interior */
+.bbi {
+    width: 4vw;
+    height: 5vw;
+    position: absolute;
+    right: 2vw;
+    bottom: 3vw;
+    transform: translateZ(0.92vw);
+}
+
+.bbi__front {
+    width: 4vw;
+    height: 0.5vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-4.5vw);
+    background-color: #c4c2d6;
+}
+
+.bbi__back {
+    width: 4vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-4vw) translateY(-0.5vw);
+    background-color: #c4c2d6;
+}
+
+.bbi__right {
+    width: 5vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(4vw) translateX(-5vw) translateY(-0.5vw);
+    background-color: #f2f2f2;
+}
+
+.bbi__left {
+    width: 5vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.5vw);
+    background-color: #fbfbfb;
+}
+
+.bbi__top {
+    width: 4vw;
+    height: 5vw;
+    transform-origin: top left;
+    transform: translateZ(0.5vw);
+    background-color: #e8e8ea;
+}
+
+.bbi__bottom {
+    width: 4vw;
+    height: 5vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-4vw);
+    background-color: #fbfbfb;
+}
+
+.bbi__bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 95%;
+    height: 104%;
+    background-color: #675D6E;
+    filter: blur(0.5vw);
+}
+
+/* Building C - Left */
+.cl {
+    width: 5vw;
+    height: 3vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateZ(0.41vw);
+}
+
+.cl__front {
+    width: 3.5vw;
+    height: 12vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-11.6vw);
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to bottom, #c4c2d6, #aeacc0);
+    overflow: hidden;
+}
+
+.cl__front::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1.1vw;
+    width: 200%;
+    height: 3vw;
+    background-image: linear-gradient(to right, rgba(222, 245, 241, 0.3), rgba(196, 194, 214, 0.25));
+    filter: blur(0.175vw);
+    transform: rotateZ(-30deg);
+}
+
+.cl__back {
+    width: 3.5vw;
+    height: 12vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-3.5vw) translateY(-12vw);
+    background-color: #c4c2d6;
+}
+
+.cl__right {
+    width: 19vw;
+    height: 12vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(3.5vw) translateX(-19vw) translateY(-12vw);
+    background-image: linear-gradient(to top, #b4b2c6, #9c98b6, #c9e8e3 70%);
+}
+
+.cl__right::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: calc(100% - 2.5vw);
+    height: 100%;
+    background-image: linear-gradient(to bottom, #fbfbfb, #c9e8e3 15%, #e8e8ea 80%, #b4b2c6);
+    filter: blur(0.5vw);
+}
+
+.cl__left {
+    width: 19vw;
+    height: 12vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-12vw);
+    background-image: linear-gradient(to top, #9c98b6, #8a8698);
+}
+
+.cl__top {
+    width: 3.5vw;
+    height: 19vw;
+    transform-origin: top left;
+    transform: translateZ(12vw);
+    background-color: #c0bece;
+}
+
+.cl__bottom {
+    width: 3.5vw;
+    height: 19vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-3.5vw);
+    background-color: #c4c2d6;
+}
+
+.cl__bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 115%;
+    height: 103%;
+    background-color: rgba(103, 93, 110, 0.75);
+    filter: blur(0.5vw);
+}
+
+/* Lamp */
+.lamp {
+    position: absolute;
+    top: 2.5vw;
+    width: 0.75vw;
+    height: 2.5vw;
+    border-radius: 5vw;
+    opacity: 0.95;
+    background-color: #def5f1;
+    box-shadow: 0.15vw 0.15vw 0.75vw rgba(186, 223, 217, 0.5), 0.15vw -0.15vw 0.75vw rgba(186, 223, 217, 0.5), -0.15vw 0.15vw 0.75vw rgba(186, 223, 217, 0.5), -0.15vw -0.15vw 0.75vw rgba(186, 223, 217, 0.5);
+    filter: blur(0.15vw);
+}
+
+/* Building C - Center */
+.cc {
+    width: 1vw;
+    height: 19vw;
+    position: absolute;
+    left: 15vw;
+    top: 0;
+    transform: translateZ(12.5vw);
+}
+
+.cc__front {
+    width: 1vw;
+    height: 12.5vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-12.25vw);
+    background-image: linear-gradient(to bottom, #c0bece, #c4c2d6 10%);
+}
+
+.cc__back {
+    width: 1vw;
+    height: 12.5vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-1vw) translateY(-12.5vw);
+    background-color: #c4c2d6;
+}
+
+.cc__right {
+    width: 19vw;
+    height: 12.5vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(1vw) translateX(-19vw) translateY(-12.5vw);
+    background-color: #fbfbfb;
+}
+
+.cc__left {
+    width: 19vw;
+    height: 12.5vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-12.5vw);
+    background-image: linear-gradient(to top, #9c98b6, #8a8698);
+}
+
+.cc__top {
+    width: 1vw;
+    height: 19vw;
+    transform-origin: top left;
+    transform: translateZ(12.5vw);
+    background-color: #f2f2f2;
+}
+
+.cc__bottom {
+    width: 1vw;
+    height: 19vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-1vw);
+    background-color: #c4c2d6;
+}
+
+/* Building C - Center Left */
+.ccl {
+    width: 1vw;
+    height: 3vw;
+    position: absolute;
+    left: 15vw;
+    top: 16vw;
+    transform: translateZ(1.43vw);
+}
+
+.ccl__front {
+    width: 1vw;
+    height: 11.5vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-11.2vw);
+    background-image: linear-gradient(to top, #b4b2c6, #c4c2d6);
+}
+
+.ccl__back {
+    width: 1vw;
+    height: 11.5vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-1vw) translateY(-11.5vw);
+    background-color: #c4c2d6;
+}
+
+.ccl__right {
+    width: 3vw;
+    height: 11.5vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(1vw) translateX(-3vw) translateY(-11.5vw);
+    background-image: linear-gradient(to bottom, #8a8698, #9c98b6 70%, #badfd9);
+}
+
+.ccl__right::before {
+    content: '';
+    position: absolute;
+    top: -0.5vw;
+    left: 0;
+    width: 100%;
+    height: 2vw;
+    transform-origin: bottom left;
+    transform: translateZ(0.05vw);
+    background-image: linear-gradient(-45deg, #9c98b6, #8a8698 80%, transparent 80%);
+}
+
+.ccl__left {
+    width: 3vw;
+    height: 11.5vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-11.5vw);
+    background-image: linear-gradient(to top, #9c98b6, #8a8698);
+}
+
+.ccl__top {
+    width: 1vw;
+    height: 3vw;
+    transform-origin: top left;
+    transform: translateZ(11.5vw);
+    background-color: #f2f2f2;
+}
+
+.ccl__bottom {
+    width: 1vw;
+    height: 3vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-1vw);
+    background-color: #c4c2d6;
+}
+
+.ccl__bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 102%;
+    height: 101%;
+    background-color: #675D6E;
+    filter: blur(0.35vw);
+}
+
+/* Building C - Middle Left */
+.cml {
+    width: 16vw;
+    height: 19vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateZ(12.41vw);
+}
+
+.cml__front {
+    width: 16vw;
+    height: 1vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(18vw);
+    background-image: linear-gradient(to bottom, #c0bece, #c4c2d6);
+}
+
+.cml__back {
+    width: 16vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-16vw) translateY(-1vw);
+    background-color: #c4c2d6;
+}
+
+.cml__right {
+    width: 19vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(16vw) translateX(-19vw) translateY(-1vw);
+    background-color: #fbfbfb;
+}
+
+.cml__left {
+    width: 19vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-1vw);
+    background-color: #8a8698;
+}
+
+.cml__top {
+    width: 16vw;
+    height: 19vw;
+    transform-origin: top left;
+    transform: translateZ(1vw);
+    background-image: linear-gradient(to right, #9c98b6, #b4b2c6 30%, #a8d6d1);
+    box-shadow: inset 0.3vw 0.3vw 2vw rgba(103, 93, 110, 0.1), inset -0.3vw 0.3vw 2vw rgba(103, 93, 110, 0.1), inset 0.3vw -0.3vw 2vw rgba(103, 93, 110, 0.1), inset -0.3vw -0.3vw 2vw rgba(103, 93, 110, 0.1);
+}
+
+.cml__bottom {
+    width: 16vw;
+    height: 19vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-16vw);
+    background-color: #c4c2d6;
+}
+
+/* Building C - Middle Right */
+.cmr {
+    width: 16vw;
+    height: 18vw;
+    position: absolute;
+    left: 16vw;
+    top: 0;
+    transform: translateZ(12.41vw);
+}
+
+.cmr__front {
+    width: 16vw;
+    height: 1vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(17vw);
+    background-image: linear-gradient(to bottom, #c0bece, #c4c2d6);
+}
+
+.cmr__back {
+    width: 16vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-16vw) translateY(-1vw);
+    background-color: #c4c2d6;
+}
+
+.cmr__right {
+    width: 18vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(16vw) translateX(-18vw) translateY(-1vw);
+    background-color: #fbfbfb;
+}
+
+.cmr__left {
+    width: 18vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-1vw);
+    background-color: #c4c2d6;
+}
+
+.cmr__top {
+    width: 16vw;
+    height: 18vw;
+    transform-origin: top left;
+    transform: translateZ(1vw);
+    background-image: linear-gradient(to right, #f2f2f2, #eeeeee);
+}
+
+.cmr__top::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(48.5deg, #f4f4f4 50%, transparent 50%);
+    opacity: 0.35;
+}
+
+.cmr__bottom {
+    width: 16vw;
+    height: 18vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-16vw);
+    background-color: #c4c2d6;
+}
+
+/* Building C - Middle Top */
+.cmt {
+    width: 12vw;
+    height: 19vw;
+    position: absolute;
+    left: 3vw;
+    top: 0;
+    transform: translateZ(24vw);
+}
+
+.cmt__front {
+    width: 12vw;
+    height: 1vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(18vw);
+    background-image: linear-gradient(to bottom, #c0bece, #c4c2d6);
+}
+
+.cmt__back {
+    width: 12vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-12vw) translateY(-1vw);
+    background-color: #c4c2d6;
+}
+
+.cmt__right {
+    width: 19vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(12vw) translateX(-19vw) translateY(-1vw);
+    background-color: #fbfbfb;
+}
+
+.cmt__left {
+    width: 19vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-1vw);
+    background-color: #b4b2c6;
+}
+
+.cmt__top {
+    width: 12vw;
+    height: 19vw;
+    transform-origin: top left;
+    transform: translateZ(1vw);
+    background-color: #f2f2f2;
+}
+
+.cmt__bottom {
+    width: 12vw;
+    height: 19vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-12vw);
+    background-color: #c4c2d6;
+}
+
+/* Building D - Left */
+.dl {
+    width: 2vw;
+    height: 1vw;
+    position: absolute;
+    left: 21.9vw;
+    bottom: 7vw;
+    transform: translateZ(1.5vw);
+}
+
+.dl__front {
+    width: 2vw;
+    height: 11vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-10.5vw);
+    background-image: linear-gradient(to bottom, #9c98b6, #aeacc0 35%, #b4b2c6 72%, #badfd9);
+}
+
+.dl__back {
+    width: 2vw;
+    height: 11vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-2vw) translateY(-11vw);
+    background-color: #c4c2d6;
+}
+
+.dl__right {
+    width: 1vw;
+    height: 11vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(2vw) translateX(-1vw) translateY(-11vw);
+    background-color: #c4c2d6;
+}
+
+.dl__left {
+    width: 1vw;
+    height: 11vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-11vw);
+    background-color: #aeacc0;
+}
+
+.dl__top {
+    width: 2vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: translateZ(11vw);
+    background-color: #f2f2f2;
+}
+
+.dl__bottom {
+    width: 2vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-2vw);
+    background-color: #c4c2d6;
+}
+
+.dl__bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 102%;
+    height: 101%;
+    background-color: #675D6E;
+    filter: blur(0.35vw);
+}
+
+/* Building D - Middle */
+.dm {
+    width: 6vw;
+    height: 1vw;
+    position: absolute;
+    left: 16vw;
+    bottom: 7vw;
+    transform: translateZ(8.5vw);
+}
+
+.dm__front {
+    width: 6vw;
+    height: 4vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-3.5vw);
+    background-image: linear-gradient(to bottom, #9c98b6, #aeacc0);
+}
+
+.dm__back {
+    width: 6vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-6vw) translateY(-4vw);
+    background-color: #c4c2d6;
+}
+
+.dm__right {
+    width: 1vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(6vw) translateX(-1vw) translateY(-4vw);
+    background-color: #fbfbfb;
+}
+
+.dm__left {
+    width: 1vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-4vw);
+    background-color: #c4c2d6;
+}
+
+.dm__top {
+    width: 6vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: translateZ(4vw);
+    background-color: #f2f2f2;
+}
+
+.dm__bottom {
+    width: 6vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-6vw);
+    background-color: #c4c2d6;
+}
+
+/* Building D - Top */
+.dt {
+    width: 8vw;
+    height: 1vw;
+    position: absolute;
+    left: 14vw;
+    top: 0;
+    transform: translateZ(1.5vw);
+}
+
+.dt__front {
+    width: 8vw;
+    height: 11vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-10.5vw);
+    background-color: #f2f2f2;
+}
+
+.dt__back {
+    width: 8vw;
+    height: 11vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-8vw) translateY(-11vw);
+    background-color: #c4c2d6;
+}
+
+.dt__right {
+    width: 1vw;
+    height: 11vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(8vw) translateX(-1vw) translateY(-11vw);
+    background-color: #fbfbfb;
+}
+
+.dt__left {
+    width: 1vw;
+    height: 11vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-11vw);
+    background-color: #f2f2f2;
+}
+
+.dt__top {
+    width: 8vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: translateZ(11vw);
+    background-color: #f2f2f2;
+}
+
+.dt__bottom {
+    width: 8vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-8vw);
+    background-color: #c4c2d6;
+}
+
+/* Building E - Windows */
+.el {
+    width: 11.4vw;
+    height: 1vw;
+    position: absolute;
+    left: 3.5vw;
+    bottom: 7vw;
+    transform: translateZ(1vw);
+}
+
+.el__front {
+    width: 11.4vw;
+    height: 11.5vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-11.25vw);
+    border: 0.1vw solid rgba(77, 109, 152, 0.5);
+    overflow: hidden;
+    background-image: repeating-linear-gradient(-45deg, rgba(97, 135, 190, 0.1) 1vw, rgba(112, 149, 201, 0.1) 1.5vw);
+}
+
+.ec {
+    width: 14vw;
+    height: 1vw;
+    position: absolute;
+    left: 16vw;
+    bottom: 7vw;
+    transform: translateZ(1.5vw);
+}
+
+.ec__front {
+    width: 14vw;
+    height: 11vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-10.75vw);
+    border: 0.1vw solid rgba(77, 109, 152, 0.5);
+    overflow: hidden;
+    background-image: linear-gradient(to right, rgba(97, 135, 190, 0.1), rgba(112, 149, 201, 0.1));
+}
+
+.er {
+    width: 14vw;
+    height: 1vw;
+    position: absolute;
+    left: 29.8vw;
+    top: 0;
+    transform: translateZ(1.5vw);
+}
+
+.er__right {
+    width: 0.1vw;
+    height: 11vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(0.1vw) translateX(-16.6vw) translateY(-11vw);
+    border: 0.1vw solid rgba(77, 109, 152, 0.5);
+    overflow: hidden;
+    background-image: linear-gradient(to right, rgba(97, 135, 190, 0.1), rgba(112, 149, 201, 0.1));
+}
+
+.eb {
+    width: 26.4vw;
+    height: 1vw;
+    position: absolute;
+    left: 3.5vw;
+    top: 0;
+    transform: translateZ(1vw);
+}
+
+.eb__back {
+    width: 26.4vw;
+    height: 11.4vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-26.4vw) translateY(-11.4vw);
+    border: 0.1vw solid rgba(77, 109, 152, 0.5);
+    overflow: hidden;
+    background-image: linear-gradient(to right, rgba(97, 135, 190, 0.1), rgba(112, 149, 201, 0.1));
+}
+
+/* Building F - Frames */
+.fl {
+    width: 1vw;
+    height: 8.45vw;
+    position: absolute;
+    left: 1.5vw;
+    top: 1vw;
+    transform: translateZ(16.75vw);
+}
+
+.fl__front {
+    width: 0.25vw;
+    height: 0.25vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-8.2vw);
+    background-color: #b4b2c6;
+}
+
+.fl__back {
+    width: 0.25vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-0.25vw) translateY(-0.25vw);
+    background-color: #c4c2d6;
+}
+
+.fl__right {
+    width: 8.45vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(0.25vw) translateX(-8.45vw) translateY(-0.25vw);
+    background-image: linear-gradient(to bottom, #b4b2c6, #a6a4b8 50%);
+}
+
+.fl__left {
+    width: 8.45vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.25vw);
+    background-color: #9c98b6;
+}
+
+.fl__left::before {
+    content: '';
+    position: absolute;
+    top: 0.25vw;
+    right: 0;
+    width: 100%;
+    height: 3.25vw;
+    border: 0.1vw solid rgba(77, 109, 152, 0.5);
+}
+
+.fl__top {
+    width: 0.25vw;
+    height: 8.45vw;
+    transform-origin: top left;
+    transform: translateZ(0.25vw);
+    background-image: linear-gradient(to bottom, #b4b2c6, #e8e8ea);
+}
+
+.fl__bottom {
+    width: 0.25vw;
+    height: 8.45vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-0.25vw);
+    background-color: #c4c2d6;
+}
+
+.fb, .ft {
+    width: 5vw;
+    height: 0.25vw;
+    position: absolute;
+    left: 1.5vw;
+    bottom: 6.1vw;
+    transform: translateZ(16.75vw);
+}
+
+.fb__front, .ft__front {
+    width: 14vw;
+    height: 0.25vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(0);
+    background-color: #b4b2c6;
+}
+
+.fb__front::before, .ft__front::before {
+    content: '';
+    position: absolute;
+    top: 0.25vw;
+    left: 0.1vw;
+    width: calc(100% - 0.25vw);
+    height: 3.25vw;
+    border: 0.1vw solid rgba(77, 109, 152, 0.5);
+    background-image: linear-gradient(to right, rgba(97, 135, 190, 0.15), rgba(112, 149, 201, 0.15));
+}
+
+.fb__back, .ft__back {
+    width: 14vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-14vw) translateY(-0.25vw);
+    background-color: #c4c2d6;
+}
+
+.fb__right, .ft__right {
+    width: 0.25vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(14vw) translateX(-0.25vw) translateY(-0.25vw);
+    background-color: #fbfbfb;
+}
+
+.fb__left, .ft__left {
+    width: 0.25vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.25vw);
+    background-color: #c4c2d6;
+}
+
+.fb__top, .ft__top {
+    width: 14vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: translateZ(0.25vw);
+    background-image: linear-gradient(to bottom, #a8d6d1, #e8e8ea);
+}
+
+.fb__bottom, .ft__bottom {
+    width: 14vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-14vw);
+    background-color: #c4c2d6;
+}
+
+.ft {
+    top: 1vw;
+}
+
+/* Furniture - Table */
+.table {
+    width: 3vw;
+    height: 5vw;
+    right: 10.5vw;
+    bottom: 13vw;
+    position: absolute;
+    transform: translateZ(2.25vw);
+}
+
+.table::before {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -10%;
+    width: 120%;
+    height: 120%;
+    background-color: #c0bece;
+    filter: blur(0.5vw);
+    transform: translateZ(-0.81vw);
+}
+
+.table__front {
+    width: 3vw;
+    height: 0.25vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-4.75vw);
+    background-color: #cccad6;
+}
+
+.table__back {
+    width: 3vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-3vw) translateY(-0.25vw);
+    background-color: #c4c2d6;
+}
+
+.table__right {
+    width: 5vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(3vw) translateX(-5vw) translateY(-0.25vw);
+    background-color: #fbfbfb;
+}
+
+.table__left {
+    width: 5vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.25vw);
+    background-color: #c4c2d6;
+}
+
+.table__top {
+    width: 3vw;
+    height: 5vw;
+    transform-origin: top left;
+    transform: translateZ(0.25vw);
+    background-color: #e8e8ea;
+}
+
+.table__bottom {
+    width: 3vw;
+    height: 5vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-3vw);
+    background-color: #c4c2d6;
+}
+
+.foot {
+    width: 0.25vw;
+    height: 0.25vw;
+    position: absolute;
+}
+
+.foot__front {
+    width: 0.25vw;
+    height: 1vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-0.875vw);
+    background-color: #cccad6;
+}
+
+.foot__back {
+    width: 0.25vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-0.25vw) translateY(-1vw);
+    background-color: #f2f2f2;
+}
+
+.foot__right {
+    width: 0.25vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(0.25vw) translateX(-0.25vw) translateY(-1vw);
+    background-color: #c4c2d6;
+}
+
+.foot__left {
+    width: 0.25vw;
+    height: 1vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-1vw);
+    background-color: #f2f2f2;
+}
+
+.foot__top {
+    width: 0.25vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: translateZ(1vw);
+    background-color: #c4c2d6;
+}
+
+.foot__bottom {
+    width: 0.25vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-0.25vw);
+    background-color: #c4c2d6;
+}
+
+.foot:nth-of-type(1) {
+    bottom: 0;
+    right: 0;
+}
+
+.foot:nth-of-type(2) {
+    bottom: 0;
+    left: 0;
+}
+
+.foot:nth-of-type(3) {
+    top: 0;
+    right: 0;
+}
+
+.foot:nth-of-type(4) {
+    top: 0;
+    left: 0;
+}
+
+/* Furniture - Kitchen */
+.kitchen {
+    width: 2vw;
+    height: 12vw;
+    top: 3vw;
+    left: 3.5vw;
+    transform: translateZ(3vw);
+    position: absolute;
+}
+
+.kitchen__front {
+    width: 2vw;
+    height: 0.25vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-11.75vw);
+    background-color: #b4b2c6;
+}
+
+.kitchen__back {
+    width: 2vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-2vw) translateY(-0.25vw);
+    background-color: #c4c2d6;
+}
+
+.kitchen__right {
+    width: 12vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(2vw) translateX(-12vw) translateY(-0.25vw);
+    background-color: #fbfbfb;
+}
+
+.kitchen__left {
+    width: 12vw;
+    height: 0.25vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.25vw);
+    background-color: #c4c2d6;
+}
+
+.kitchen__left::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 0.25vw;
+    height: 1.25vw;
+    background-color: rgba(139, 126, 148, 0.75);
+    filter: blur(0.5vw);
+}
+
+.kitchen__top {
+    width: 2vw;
+    height: 12vw;
+    transform-origin: top left;
+    transform: translateZ(0.25vw);
+    background-image: linear-gradient(to right, #e8f4f3, #ebf6f5 60%);
+}
+
+.kitchen__bottom {
+    width: 2vw;
+    height: 12vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-2vw);
+    background-color: #c4c2d6;
+}
+
+/* Furniture - Couch */
+.couch {
+    width: 5vw;
+    height: 3vw;
+    top: 0.5vw;
+    left: 16vw;
+    transform: translateZ(1.5vw);
+    position: absolute;
+}
+
+.couch__front {
+    width: 5vw;
+    height: 2vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-1vw);
+    background-color: #cccad6;
+}
+
+.couch__back {
+    width: 5vw;
+    height: 2vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-5vw) translateY(-2vw);
+    background-color: #c4c2d6;
+}
+
+.couch__right {
+    width: 3vw;
+    height: 2vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(5vw) translateX(-3vw) translateY(-2vw);
+    background-color: #fbfbfb;
+}
+
+.couch__left {
+    width: 3vw;
+    height: 2vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-2vw);
+    background-color: #c4c2d6;
+}
+
+.couch__top {
+    width: 5vw;
+    height: 3vw;
+    transform-origin: top left;
+    transform: translateZ(2vw);
+    background-color: #e8e8ea;
+}
+
+.couch__bottom {
+    width: 5vw;
+    height: 3vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-5vw);
+    background-color: #c4c2d6;
+}
+
+.couch__bottom::before {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -10%;
+    width: 120%;
+    height: 120%;
+    background-color: rgba(180, 178, 198, 0.5);
+    filter: blur(0.25vw);
+}
+
+.couchb {
+    width: 7vw;
+    height: 1vw;
+    bottom: 17vw;
+    left: 6vw;
+    transform: translateZ(1vw);
+    position: absolute;
+}
+
+.couchb__front {
+    width: 7vw;
+    height: 0.75vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-0.25vw);
+    background-color: #cccad6;
+}
+
+.couchb__back {
+    width: 7vw;
+    height: 0.75vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-7vw) translateY(-0.75vw);
+    background-color: #c4c2d6;
+}
+
+.couchb__right {
+    width: 5vw;
+    height: 0.75vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(7vw) translateX(-5vw) translateY(-0.75vw);
+    background-color: #fbfbfb;
+}
+
+.couchb__left {
+    width: 5vw;
+    height: 0.75vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.75vw);
+    background-color: #c4c2d6;
+}
+
+.couchb__top {
+    width: 7vw;
+    height: 5vw;
+    transform-origin: top left;
+    transform: translateZ(0.75vw);
+    background-image: linear-gradient(to right, #e8f4f3, #ebf6f5 60%);
+}
+
+.couchb__bottom {
+    width: 7vw;
+    height: 5vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-7vw);
+    background-color: #c4c2d6;
+}
+
+.couchb__bottom::before {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -10%;
+    width: 120%;
+    height: 120%;
+    background-color: rgba(180, 178, 198, 0.5);
+    filter: blur(0.25vw);
+}
+
+.couchc, .couchd {
+    width: 5vw;
+    height: 1.5vw;
+    bottom: 6.5vw;
+    left: 9vw;
+    transform: translateZ(13.5vw);
+    position: absolute;
+}
+
+.couchc__front, .couchd__front {
+    width: 5vw;
+    height: 1.5vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(0);
+    background-color: #c4c2d6;
+}
+
+.couchc__back, .couchd__back {
+    width: 5vw;
+    height: 1.5vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-5vw) translateY(-1.5vw);
+    background-color: #c4c2d6;
+}
+
+.couchc__right, .couchd__right {
+    width: 1.5vw;
+    height: 1.5vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(5vw) translateX(-1.5vw) translateY(-1.5vw);
+    background-image: linear-gradient(to bottom, #c9e8e3, #def5f1, #f2f2f2);
+}
+
+.couchc__left, .couchd__left {
+    width: 1.5vw;
+    height: 1.5vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-1.5vw);
+    background-color: #aeacc0;
+}
+
+.couchc__top, .couchd__top {
+    width: 5vw;
+    height: 1.5vw;
+    transform-origin: top left;
+    transform: translateZ(1.5vw);
+    background-image: linear-gradient(to left, #c9e8e3, #def5f1, #f2f2f2);
+}
+
+.couchc__bottom, .couchd__bottom {
+    width: 5vw;
+    height: 1.5vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-5vw);
+    background-color: #c4c2d6;
+}
+
+.couchc__bottom::before, .couchd__bottom::before {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -10%;
+    width: 120%;
+    height: 120%;
+    background-color: rgba(138, 134, 152, 0.5);
+    filter: blur(0.25vw);
+}
+
+.couchd {
+    top: 1.5vw;
+}
+
+/* Furniture - Picture */
+.picture {
+    width: 0.5vw;
+    height: 3vw;
+    bottom: 14vw;
+    left: 3.35vw;
+    transform: translateZ(6vw);
+    position: absolute;
+}
+
+.picture__front {
+    width: 0.35vw;
+    height: 4vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-3.5vw);
+    background-color: #c4c2d6;
+}
+
+.picture__back {
+    width: 0.35vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-0.35vw) translateY(-4vw);
+    background-color: #c4c2d6;
+}
+
+.picture__right {
+    width: 3vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(0.35vw) translateX(-3vw) translateY(-4vw);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom, #def5f1, #fbfbfb);
+}
+
+.picture__right::before, .picture__right::after {
+    content: '';
+    position: absolute;
+    width: 1.1vw;
+    height: 1.1vw;
+    border: 0.125vw solid rgba(196, 194, 214, 0.5);
+}
+
+.picture__right::before {
+    top: 40%;
+    left: 25%;
+}
+
+.picture__right::after {
+    top: 55%;
+    left: 45%;
+}
+
+.picture__left {
+    width: 3vw;
+    height: 4vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-4vw);
+    background-color: #c4c2d6;
+}
+
+.picture__top {
+    width: 0.35vw;
+    height: 3vw;
+    transform-origin: top left;
+    transform: translateZ(4vw);
+    background-color: #e8e8ea;
+}
+
+.picture__bottom {
+    width: 0.35vw;
+    height: 3vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-0.35vw);
+    background-color: #c4c2d6;
+}
+
+/* Doors */
+.door-l {
+    width: 0.125vw;
+    height: 1vw;
+    left: 17vw;
+    bottom: 6.75vw;
+    transform: translateZ(1.5vw);
+    position: absolute;
+}
+
+.door-l__front {
+    width: 0.125vw;
+    height: 7vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-6.75vw);
+    background-color: #564e66;
+}
+
+.door-l__back {
+    width: 0.125vw;
+    height: 7vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-0.125vw) translateY(-7vw);
+    background-color: #736c84;
+}
+
+.door-l__right {
+    width: 0.5vw;
+    height: 7vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(0.125vw) translateX(-0.5vw) translateY(-7vw);
+    background-color: #736c84;
+}
+
+.door-l__left {
+    width: 0.5vw;
+    height: 7vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-7vw);
+    background-color: #564e66;
+}
+
+.door-l__top {
+    width: 0.125vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: translateZ(7vw);
+    background-color: #736c84;
+}
+
+.door-l__bottom {
+    width: 0.125vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-0.125vw);
+    background-color: #736c84;
+}
+
+.door-r {
+    width: 2vw;
+    height: 1vw;
+    left: 20vw;
+    bottom: 6.75vw;
+    transform: translateZ(1.5vw);
+    position: absolute;
+}
+
+.door-r__front {
+    width: 2vw;
+    height: 7vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-6.75vw);
+    background-color: #564e66;
+}
+
+.door-r__back {
+    width: 2vw;
+    height: 7vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-2vw) translateY(-7vw);
+    background-color: #736c84;
+}
+
+.door-r__right {
+    width: 0.5vw;
+    height: 7vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(2vw) translateX(-0.5vw) translateY(-7vw);
+    background-color: #736c84;
+}
+
+.door-r__left {
+    width: 0.5vw;
+    height: 7vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-7vw);
+    background-color: #564e66;
+}
+
+.door-r__top {
+    width: 2vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: translateZ(7vw);
+    background-color: #736c84;
+}
+
+.door-r__bottom {
+    width: 2vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-2vw);
+    background-color: #736c84;
+}
+
+.door-b, .door-t {
+    width: 2vw;
+    height: 1vw;
+    left: 16vw;
+    bottom: 6.75vw;
+    transform: translateZ(1.5vw);
+    position: absolute;
+}
+
+.door-b__front, .door-t__front {
+    width: 6vw;
+    height: 0.125vw;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg) translateZ(-0.875vw);
+    background-color: #564e66;
+}
+
+.door-b__back, .door-t__back {
+    width: 6vw;
+    height: 0.125vw;
+    transform-origin: top left;
+    transform: rotateX(-90deg) rotateY(180deg) translateX(-6vw) translateY(-0.125vw);
+    background-color: #736c84;
+}
+
+.door-b__right, .door-t__right {
+    width: 0.5vw;
+    height: 0.125vw;
+    transform-origin: top left;
+    transform: rotateY(90deg) rotateZ(-90deg) translateZ(6vw) translateX(-0.5vw) translateY(-0.125vw);
+    background-color: #736c84;
+}
+
+.door-b__left, .door-t__left {
+    width: 0.5vw;
+    height: 0.125vw;
+    transform-origin: top left;
+    transform: rotateY(-90deg) rotateZ(90deg) translateY(-0.125vw);
+    background-color: #736c84;
+}
+
+.door-b__top, .door-t__top {
+    width: 6vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: translateZ(0.125vw);
+    background-color: #736c84;
+}
+
+.door-b__bottom, .door-t__bottom {
+    width: 6vw;
+    height: 0.5vw;
+    transform-origin: top left;
+    transform: rotateY(180deg) translateX(-6vw);
+    background-color: #736c84;
+}
+
+.door-t {
+    transform: translateZ(8.4vw);
+}
+
+/* Weather Card Styles */
+.card-container {
+    position: fixed;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+.weather-nav ul {
+    margin: 0 0 20px 0;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.weather-nav li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.weather-nav li a:hover {
+    color: #444;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.weather-nav li a.active {
+    color: #4444ff;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.weather-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    width: 300px;
+    padding: 0;
+    height: 400px;
+    min-height: 300px;
+    border-radius: 15px;
+    position: relative;
+    transition: background-color 2s ease;
+}
+
+body.stormy .weather-card {
+    background: rgba(159, 164, 173, 0.9);
+}
+
+body.rainy .weather-card {
+    background: rgba(216, 216, 216, 0.9);
+}
+
+body.sunny .weather-card {
+    background: rgba(204, 204, 255, 0.9);
+}
+
+.card-svg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.cloud {
+    transition: fill 2s ease;
+}
+
+#cloud1 {
+    fill: #efefef;
+}
+
+body.stormy #cloud1 {
+    fill: #9FA4AD;
+}
+
+#cloud2 {
+    fill: #E6E6E6;
+}
+
+body.stormy #cloud2 {
+    fill: #8B8E98;
+}
+
+#cloud3 {
+    fill: #D5D5D5;
+}
+
+body.stormy #cloud3 {
+    fill: #7B7988;
+}
+
+.card-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 20px;
+    color: #888;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: color 2s ease;
+}
+
+body.stormy .card-details {
+    color: #ddd;
+}
+
+.card-details .right {
+    text-align: right;
+}
+
+#date {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+#summary {
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.temp {
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 300;
+}
+
+.temp span {
+    font-size: 18px;
+    line-height: 30px;
+    vertical-align: top;
+    margin-left: 5px;
+}
+
+.outer-svg {
+    position: fixed;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 6;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .house {
+        width: 45vw;
+        height: 30vw;
+    }
+    
+    .card-container {
+        left: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .house {
+        width: 60vw;
+        height: 40vw;
+    }
+    
+    .card-container {
+        left: 10px;
+        transform: translateY(-50%) scale(0.9);
+    }
+    
+    .weather-card {
+        width: 250px;
+        height: 350px;
+    }
+}
+.location-search {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 300px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.search-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+#city-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+#city-input:focus {
+    outline: none;
+    border-color: #4d6d98;
+    box-shadow: 0 0 0 3px rgba(77, 109, 152, 0.2);
+}
+
+#search-btn {
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #4d6d98, #7095c9);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-btn:hover {
+    background: linear-gradient(135deg, #3d5d88, #6085b9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(77, 109, 152, 0.3);
+}
+
+#search-btn:active {
+    transform: translateY(0);
+}
+
+#location-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#city-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+}
+
+#local-time {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Night time moon icon */
+body.night .location-search {
+    background: rgba(26, 26, 46, 0.9);
+}
+
+body.night #city-input {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+body.night #city-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+body.night #location-info {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+body.night #city-name {
+    color: #fff;
+}
+
+body.night #local-time {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Add moon/sun indicator */
+.time-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+}
+
+/* Update card-container positioning for new height */
+.card-container {
+    position: fixed;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    gap: 20px;
+}
+   
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .house {
+        width: 45vw;
+        height: 30vw;
+    }
+    
+    .card-container {
+        left: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .house {
+        width: 60vw;
+        height: 40vw;
+    }
+    
+    .card-container {
+        left: 10px;
+        transform: translateY(-50%) scale(0.9);
+    }
+    
+    .weather-card {
+        width: 250px;
+        height: 350px;
+    }
+    
+    .location-search {
+        width: 250px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        transform: translateY(-50%) scale(0.8);
+        left: 5px;
+    }
+}
+
+/* Refined weather controls */
+:root {
+    --panel-border: rgba(255, 255, 255, 0.62);
+    --panel-shadow: 0 18px 48px rgba(37, 51, 82, 0.16);
+    --ink: #26344a;
+    --muted-ink: #66748a;
+    --accent: #5279b9;
+}
+
+.card-container {
+    width: min(320px, calc(100vw - 32px));
+    left: clamp(16px, 3vw, 40px);
+    align-items: stretch;
+    gap: 14px;
+}
+
+.location-search {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 0;
+    border: 1px solid var(--panel-border);
+    border-radius: 18px;
+    background: rgba(250, 252, 255, 0.78);
+    box-shadow: var(--panel-shadow);
+    backdrop-filter: blur(20px) saturate(1.25);
+    -webkit-backdrop-filter: blur(20px) saturate(1.25);
+}
+
+.search-input-group {
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+#city-input {
+    min-width: 0;
+    padding: 11px 13px;
+    border: 1px solid rgba(104, 126, 158, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--ink);
+    user-select: text;
+}
+
+#city-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(82, 121, 185, 0.14);
+}
+
+#search-btn {
+    width: 44px;
+    min-width: 44px;
+    padding: 0;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #668bc5, #456da9);
+    box-shadow: 0 6px 14px rgba(58, 91, 145, 0.22);
+}
+
+#search-btn:hover {
+    background: linear-gradient(145deg, #7398d0, #527bb8);
+}
+
+#search-btn:focus-visible,
+.weather-nav button:focus-visible {
+    outline: 3px solid rgba(82, 121, 185, 0.55);
+    outline-offset: 3px;
+}
+
+#location-info {
+    gap: 12px;
+    padding-top: 12px;
+    border-top-color: rgba(75, 96, 128, 0.12);
+}
+
+#city-name {
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.35;
+}
+
+#local-time {
+    flex-shrink: 0;
+    color: var(--muted-ink);
+    font-variant-numeric: tabular-nums;
+}
+
+.weather-nav {
+    align-self: center;
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    background: rgba(250, 252, 255, 0.24);
+    box-shadow: 0 10px 28px rgba(37, 51, 82, 0.1);
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.weather-nav ul {
+    gap: 6px;
+    margin: 0;
+}
+
+.weather-nav button {
+    appearance: none;
+    display: flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    background: transparent;
+    color: rgba(48, 65, 92, 0.68);
+    cursor: pointer;
+    font: inherit;
+    font-size: 21px;
+    transition: color 180ms ease, background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.weather-nav button:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--ink);
+}
+
+.weather-nav button.active {
+    border-color: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 4px 12px rgba(37, 51, 82, 0.12);
+    color: var(--accent);
+}
+
+.weather-card {
+    width: 100%;
+    height: 380px;
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: 22px;
+    background: rgba(249, 251, 255, 0.78);
+    box-shadow: var(--panel-shadow);
+    backdrop-filter: blur(22px) saturate(1.15);
+    -webkit-backdrop-filter: blur(22px) saturate(1.15);
+}
+
+.card-details {
+    padding: 22px;
+    color: #43516a;
+}
+
+#date {
+    color: var(--muted-ink);
+    font-size: 13px;
+    letter-spacing: 0.01em;
+}
+
+#summary {
+    margin-top: 4px;
+    color: var(--ink);
+    font-size: 21px;
+    letter-spacing: -0.02em;
+}
+
+.temp {
+    color: var(--ink);
+    font-size: 64px;
+    letter-spacing: -0.055em;
+}
+
+.temp span {
+    color: var(--muted-ink);
+    font-size: 16px;
+    letter-spacing: 0;
+}
+
+body.night .location-search,
+body.night .weather-card {
+    border-color: rgba(221, 231, 249, 0.16);
+    background: rgba(25, 34, 57, 0.74);
+}
+
+body.night #city-input {
+    border-color: rgba(221, 231, 249, 0.2);
+}
+
+body.night #location-info {
+    border-top-color: rgba(221, 231, 249, 0.14);
+}
+
+body.night #city-name,
+body.night .card-details,
+body.night #summary,
+body.night .temp {
+    color: #eef3ff;
+}
+
+body.night #local-time,
+body.night #date,
+body.night .temp span {
+    color: #bdc9df;
+}
+
+@media (max-width: 768px) {
+    .card-container {
+        left: 12px;
+        width: min(280px, calc(100vw - 24px));
+        transform: translateY(-50%) scale(0.88);
+        transform-origin: left center;
+    }
+
+    .weather-card {
+        height: 340px;
+    }
+
+    .weather-nav button {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        left: 8px;
+        width: min(250px, calc(100vw - 16px));
+        transform: translateY(-50%) scale(0.82);
+    }
+}
