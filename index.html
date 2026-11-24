@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%A0%3C/text%3E%3C/svg%3E"
+    />
+    <meta
+      name="description"
+      content="WeatherHouse 3D: search any city and watch live weather play out around an interactive 3D house built with pure CSS."
+    />
+    <title>WeatherHouse 3D</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,600"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="background">
+      <div class="weather-container">
+        <svg id="back">
+          <radialGradient
+            id="SVGID_1_"
+            cx="0"
+            cy="0"
+            r="320.8304"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0" style="stop-color: #ffde17; stop-opacity: 0.7" />
+            <stop offset="1" style="stop-color: #fff200; stop-opacity: 0" />
+          </radialGradient>
+          <path
+            id="sunburst"
+            style="fill: url(#SVGID_1_)"
+            d="M0,319.7c-18.6,0-37.3-1.6-55.5-4.8L-7.8,41.4c5.1,0.9,10.6,0.9,15.7,0L56,314.8C37.6,318,18.8,319.7,0,319.7z M-160.8,276.6c-32.5-18.8-61.3-42.9-85.5-71.6L-34,26.2c3.4,4.1,7.4,7.4,12,10.1L-160.8,276.6z M161.3,276.4L22.1,36.2 c4.5-2.6,8.6-6,12-10.1l212.6,178.5C222.5,233.4,193.8,257.6,161.3,276.4z M-302.5,108.3C-315.4,73-321.9,36-322-1.8l277.6-0.5 c0,5.3,0.9,10.4,2.7,15.2L-302.5,108.3z M302.6,107.8L41.8,12.8c1.7-4.7,2.6-9.7,2.6-14.9c0-0.3,0-0.6,0-1H322l0-1.3l0,1.9 C322,35.4,315.5,72.5,302.6,107.8z M-41.8-17.5l-261-94.5c12.8-35.4,31.6-68,55.8-96.9L-34.1-30.8C-37.5-26.8-40.1-22.3-41.8-17.5z M41.7-17.7c-1.8-4.8-4.4-9.3-7.8-13.3l212-179.2c24.3,28.8,43.3,61.3,56.3,96.6L41.7-17.7z M-22.2-40.8l-139.6-240 c32.7-19,68.1-32,105.2-38.6L-8-46.1C-13-45.2-17.8-43.4-22.2-40.8z M22-40.9c-4.4-2.6-9.2-4.3-14.2-5.1l47.1-273.6 c37.2,6.4,72.7,19.2,105.4,38L22-40.9z"
+          />
+        </svg>
+
+        <div class="house" id="house">
+          <div class="shadows">
+            <div class="shadow-a"></div>
+            <div class="shadow-b"></div>
+          </div>
+
+          <!-- Building A -->
+          <div class="al">
+            <div class="al__front face"></div>
+            <div class="al__back face"></div>
+            <div class="al__right face"></div>
+            <div class="al__left face"></div>
+            <div class="al__top face"></div>
+            <div class="al__bottom face"></div>
+          </div>
+          <div class="ab">
+            <div class="ab__front face"></div>
+            <div class="ab__back face"></div>
+            <div class="ab__right face"></div>
+            <div class="ab__left face"></div>
+            <div class="ab__top face"></div>
+            <div class="ab__bottom face"></div>
+          </div>
+          <div class="at">
+            <div class="at__front face"></div>
+            <div class="at__back face"></div>
+            <div class="at__right face"></div>
+            <div class="at__left face"></div>
+            <div class="at__top face"></div>
+            <div class="at__bottom face"></div>
+          </div>
+          <div class="ac">
+            <div class="ac__front face"></div>
+            <div class="ac__back face"></div>
+            <div class="ac__right face"></div>
+            <div class="ac__left face"></div>
+            <div class="ac__top face"></div>
+            <div class="ac__bottom face"></div>
+          </div>
+
+          <!-- Building B -->
+          <div class="bce">
+            <div class="bce__front face"></div>
+            <div class="bce__back face"></div>
+            <div class="bce__right face"></div>
+            <div class="bce__left face"></div>
+            <div class="bce__top face"></div>
+            <div class="bce__bottom face"></div>
+          </div>
+          <div class="bci">
+            <div class="bci__front face"></div>
+            <div class="bci__back face"></div>
+            <div class="bci__right face"></div>
+            <div class="bci__left face"></div>
+            <div class="bci__top face"></div>
+            <div class="bci__bottom face"></div>
+          </div>
+          <div class="bl">
+            <div class="bl__front face"></div>
+            <div class="bl__back face"></div>
+            <div class="bl__right face"></div>
+            <div class="bl__left face"></div>
+            <div class="bl__top face"></div>
+            <div class="bl__bottom face"></div>
+          </div>
+          <div class="bt">
+            <div class="bt__front face"></div>
+            <div class="bt__back face"></div>
+            <div class="bt__right face"></div>
+            <div class="bt__left face"></div>
+            <div class="bt__top face"></div>
+            <div class="bt__bottom face"></div>
+          </div>
+          <div class="bbe">
+            <div class="bbe__front face"></div>
+            <div class="bbe__back face"></div>
+            <div class="bbe__right face"></div>
+            <div class="bbe__left face"></div>
+            <div class="bbe__top face"></div>
+            <div class="bbe__bottom face"></div>
+          </div>
+          <div class="bbi">
+            <div class="bbi__front face"></div>
+            <div class="bbi__back face"></div>
+            <div class="bbi__right face"></div>
+            <div class="bbi__left face"></div>
+            <div class="bbi__top face"></div>
+            <div class="bbi__bottom face"></div>
+          </div>
+
+          <!-- Building C -->
+          <div class="cl">
+            <div class="cl__front face">
+              <div class="lamp"></div>
+            </div>
+            <div class="cl__back face"></div>
+            <div class="cl__right face"></div>
+            <div class="cl__left face"></div>
+            <div class="cl__top face"></div>
+            <div class="cl__bottom face"></div>
+          </div>
+          <div class="cc">
+            <div class="cc__front face"></div>
+            <div class="cc__back face"></div>
+            <div class="cc__right face"></div>
+            <div class="cc__left face"></div>
+            <div class="cc__top face"></div>
+            <div class="cc__bottom face"></div>
+          </div>
+          <div class="ccl">
+            <div class="ccl__front face"></div>
+            <div class="ccl__back face"></div>
+            <div class="ccl__right face"></div>
+            <div class="ccl__left face"></div>
+            <div class="ccl__top face"></div>
+            <div class="ccl__bottom face"></div>
+          </div>
+          <div class="cml">
+            <div class="cml__front face"></div>
+            <div class="cml__back face"></div>
+            <div class="cml__right face"></div>
+            <div class="cml__left face"></div>
+            <div class="cml__top face"></div>
+            <div class="cml__bottom face"></div>
+          </div>
+          <div class="cmr">
+            <div class="cmr__front face"></div>
+            <div class="cmr__back face"></div>
+            <div class="cmr__right face"></div>
+            <div class="cmr__left face"></div>
+            <div class="cmr__top face"></div>
+            <div class="cmr__bottom face"></div>
+          </div>
+          <div class="cmt">
+            <div class="cmt__front face"></div>
+            <div class="cmt__back face"></div>
+            <div class="cmt__right face"></div>
+            <div class="cmt__left face"></div>
+            <div class="cmt__top face"></div>
+            <div class="cmt__bottom face"></div>
+          </div>
+
+          <!-- Building D -->
+          <div class="dl">
+            <div class="dl__front face"></div>
+            <div class="dl__back face"></div>
+            <div class="dl__right face"></div>
+            <div class="dl__left face"></div>
+            <div class="dl__top face"></div>
+            <div class="dl__bottom face"></div>
+          </div>
+          <div class="dm">
+            <div class="dm__front face"></div>
+            <div class="dm__back face"></div>
+            <div class="dm__right face"></div>
+            <div class="dm__left face"></div>
+            <div class="dm__top face"></div>
+            <div class="dm__bottom face"></div>
+          </div>
+          <div class="dt">
+            <div class="dt__front face"></div>
+            <div class="dt__back face"></div>
+            <div class="dt__right face"></div>
+            <div class="dt__left face"></div>
+            <div class="dt__top face"></div>
+            <div class="dt__bottom face"></div>
+          </div>
+
+          <!-- Building E -->
+          <div class="el"><div class="el__front face"></div></div>
+          <div class="ec"><div class="ec__front face"></div></div>
+          <div class="er"><div class="er__right face"></div></div>
+          <div class="eb"><div class="eb__back face"></div></div>
+
+          <!-- Building F -->
+          <div class="fl">
+            <div class="fl__front face"></div>
+            <div class="fl__back face"></div>
+            <div class="fl__right face"></div>
+            <div class="fl__left face"></div>
+            <div class="fl__top face"></div>
+            <div class="fl__bottom face"></div>
+          </div>
+          <div class="ft">
+            <div class="ft__front face"></div>
+            <div class="ft__back face"></div>
+            <div class="ft__right face"></div>
+            <div class="ft__left face"></div>
+            <div class="ft__top face"></div>
+            <div class="ft__bottom face"></div>
+          </div>
+          <div class="fb">
+            <div class="fb__front face"></div>
+            <div class="fb__back face"></div>
+            <div class="fb__right face"></div>
+            <div class="fb__left face"></div>
+            <div class="fb__top face"></div>
+            <div class="fb__bottom face"></div>
+          </div>
+
+          <!-- Furniture -->
+          <div class="table">
+            <div class="table__front face"></div>
+            <div class="table__back face"></div>
+            <div class="table__right face"></div>
+            <div class="table__left face"></div>
+            <div class="table__top face"></div>
+            <div class="table__bottom face">
+              <div class="foot">
+                <div class="foot__front face"></div>
+                <div class="foot__back face"></div>
+                <div class="foot__right face"></div>
+                <div class="foot__left face"></div>
+                <div class="foot__top face"></div>
+                <div class="foot__bottom face"></div>
+              </div>
+              <div class="foot">
+                <div class="foot__front face"></div>
+                <div class="foot__back face"></div>
+                <div class="foot__right face"></div>
+                <div class="foot__left face"></div>
+                <div class="foot__top face"></div>
+                <div class="foot__bottom face"></div>
+              </div>
+              <div class="foot">
+                <div class="foot__front face"></div>
+                <div class="foot__back face"></div>
+                <div class="foot__right face"></div>
+                <div class="foot__left face"></div>
+                <div class="foot__top face"></div>
+                <div class="foot__bottom face"></div>
+              </div>
+              <div class="foot">
+                <div class="foot__front face"></div>
+                <div class="foot__back face"></div>
+                <div class="foot__right face"></div>
+                <div class="foot__left face"></div>
+                <div class="foot__top face"></div>
+                <div class="foot__bottom face"></div>
+              </div>
+            </div>
+          </div>
+          <div class="kitchen">
+            <div class="kitchen__front face"></div>
+            <div class="kitchen__back face"></div>
+            <div class="kitchen__right face"></div>
+            <div class="kitchen__left face"></div>
+            <div class="kitchen__top face"></div>
+            <div class="kitchen__bottom face"></div>
+          </div>
+          <div class="couch">
+            <div class="couch__front face"></div>
+            <div class="couch__back face"></div>
+            <div class="couch__right face"></div>
+            <div class="couch__left face"></div>
+            <div class="couch__top face"></div>
+            <div class="couch__bottom face"></div>
+          </div>
+          <div class="couchb">
+            <div class="couchb__front face"></div>
+            <div class="couchb__back face"></div>
+            <div class="couchb__right face"></div>
+            <div class="couchb__left face"></div>
+            <div class="couchb__top face"></div>
+            <div class="couchb__bottom face"></div>
+          </div>
+          <div class="couchc">
+            <div class="couchc__front face"></div>
+            <div class="couchc__back face"></div>
+            <div class="couchc__right face"></div>
+            <div class="couchc__left face"></div>
+            <div class="couchc__top face"></div>
+            <div class="couchc__bottom face"></div>
+          </div>
+          <div class="couchd">
+            <div class="couchd__front face"></div>
+            <div class="couchd__back face"></div>
+            <div class="couchd__right face"></div>
+            <div class="couchd__left face"></div>
+            <div class="couchd__top face"></div>
+            <div class="couchd__bottom face"></div>
+          </div>
+          <div class="picture">
+            <div class="picture__front face"></div>
+            <div class="picture__back face"></div>
+            <div class="picture__right face"></div>
+            <div class="picture__left face"></div>
+            <div class="picture__top face"></div>
+            <div class="picture__bottom face"></div>
+          </div>
+          <div class="door-r">
+            <div class="door-r__front face"></div>
+            <div class="door-r__back face"></div>
+            <div class="door-r__right face"></div>
+            <div class="door-r__left face"></div>
+            <div class="door-r__top face"></div>
+            <div class="door-r__bottom face"></div>
+          </div>
+          <div class="door-l">
+            <div class="door-l__front face"></div>
+            <div class="door-l__back face"></div>
+            <div class="door-l__right face"></div>
+            <div class="door-l__left face"></div>
+            <div class="door-l__top face"></div>
+            <div class="door-l__bottom face"></div>
+          </div>
+          <div class="door-b">
+            <div class="door-b__front face"></div>
+            <div class="door-b__back face"></div>
+            <div class="door-b__right face"></div>
+            <div class="door-b__left face"></div>
+            <div class="door-b__top face"></div>
+            <div class="door-b__bottom face"></div>
+          </div>
+          <div class="door-t">
+            <div class="door-t__front face"></div>
+            <div class="door-t__back face"></div>
+            <div class="door-t__right face"></div>
+            <div class="door-t__left face"></div>
+            <div class="door-t__top face"></div>
+            <div class="door-t__bottom face"></div>
+          </div>
+        </div>
+
+        <!-- Weather Card -->
+        <div class="card-container">
+          <!-- Location Search Box -->
+          <div class="location-search">
+            <div class="search-input-group">
+              <input
+                type="text"
+                id="city-input"
+                placeholder="Enter city or country..."
+                value="New York"
+                aria-label="Search for a city or country"
+              />
+              <button id="search-btn" type="button" aria-label="Search weather">
+                <i class="wi wi-cloudy"></i>
+              </button>
+            </div>
+            <div id="location-info">
+              <div id="city-name">New York, US</div>
+              <div id="local-time">12:30 PM</div>
+            </div>
+          </div>
+
+          <nav class="weather-nav" aria-label="Choose weather effect">
+            <ul>
+              <li>
+                <button id="button-snow" class="active" type="button" aria-label="Snow" aria-pressed="true">
+                  <i class="wi wi-snow" aria-hidden="true"></i>
+                </button>
+              </li>
+              <li>
+                <button id="button-wind" type="button" aria-label="Wind" aria-pressed="false">
+                  <i class="wi wi-strong-wind" aria-hidden="true"></i>
+                </button>
+              </li>
+              <li>
+                <button id="button-rain" type="button" aria-label="Rain" aria-pressed="false">
+                  <i class="wi wi-rain" aria-hidden="true"></i>
+                </button>
+              </li>
+              <li>
+                <button id="button-thunder" type="button" aria-label="Thunderstorm" aria-pressed="false">
+                  <i class="wi wi-lightning" aria-hidden="true"></i>
+                </button>
+              </li>
+              <li>
+                <button id="button-sun" type="button" aria-label="Sun" aria-pressed="false">
+                  <i class="wi wi-day-sunny" aria-hidden="true"></i>
+                </button>
+              </li>
+            </ul>
+          </nav>
+          <div id="card" class="weather-card">
+            <svg id="inner" class="card-svg">
+              <defs>
+                <path
+                  id="leaf"
+                  d="M41.9,56.3l0.1-2.5c0,0,4.6-1.2,5.6-2.2c1-1,3.6-13,12-15.6c9.7-3.1,19.9-2,26.1-2.1c2.7,0-10,23.9-20.5,25 c-7.5,0.8-17.2-5.1-17.2-5.1L41.9,56.3z"
+                />
+              </defs>
+              <circle id="sun" style="fill: #f7ed47" cx="0" cy="0" r="50" />
+              <g id="layer3"></g>
+              <g id="cloud3" class="cloud"></g>
+              <g id="layer2"></g>
+              <g id="cloud2" class="cloud"></g>
+              <g id="layer1"></g>
+              <g id="cloud1" class="cloud"></g>
+            </svg>
+            <div class="card-details">
+              <div class="temp">20<span>°c</span></div>
+              <div class="right">
+                <div id="date">Monday 22 August</div>
+                <div id="summary">Snow</div>
+              </div>
+            </div>
+          </div>
+          <svg id="outer" class="outer-svg"></svg>
+        </div>
+
+        <!-- Weather particles container -->
+        <canvas id="weatherCanvas"></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
